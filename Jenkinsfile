@@ -11,7 +11,7 @@ pipeline {
         stage('deploy') {
             steps {
                 script {
-                   println(currentBuild.changeSets);
+                   echo "${changedFilesString}";
                 }
             }
         }
