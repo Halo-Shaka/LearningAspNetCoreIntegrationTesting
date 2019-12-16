@@ -21,7 +21,13 @@ pipeline {
 
         failure {
             echo "${Env_BuildUser}";
-            echo "${Env_ChangedFilesString}";
+			
+			if (Env_ChangedFilesString != null)
+			{
+				            echo "${Env_ChangedFilesString}";
+			}
+			
+
         }
 
     }
