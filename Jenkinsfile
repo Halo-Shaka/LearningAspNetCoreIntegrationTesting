@@ -22,7 +22,7 @@ pipeline {
         failure {
             echo "${Env_BuildUser}";
 			
-			if (Env_ChangedFilesString != null)
+			if (Env_ChangedFilesString)
 			{
 				            echo "${Env_ChangedFilesString}";
 			}
