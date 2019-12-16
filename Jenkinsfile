@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        Env_BuildUser = getBuildUser()
-        Env_ChangedFilesString = getChangedFilesList().join('<br>')
+        buildUser = getBuildUser()
+        changedFilesString = getChangedFilesList().join('<br>')
     }
 
     stages {
@@ -11,7 +11,7 @@ pipeline {
         stage('deploy') {
             steps {
                 script {
-                    error "111";
+                   println(currentBuild.changeSets);
                 }
             }
         }
@@ -20,13 +20,8 @@ pipeline {
     post {
 
         failure {
-            echo "${Env_BuildUser}";
-			
-			if (Env_ChangedFilesString)
-			{
-				            echo "${Env_ChangedFilesString}";
-			}
-			
+            echo "${buildUser}";
+						
 
         }
 
@@ -44,7 +39,6 @@ String getChangedFilesList() {
             }
         }
     }
-
     return changedFiles;
 }
 
