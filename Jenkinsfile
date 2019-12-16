@@ -33,9 +33,9 @@ String getChangedFilesList() {
 
     changedFiles = []
     for (changeLogSet in currentBuild.changeSets) {
-		def commitMessage = changeLogSet.getMsg();
-		changedFiles.add(commitMessage)
         for (entry in changeLogSet.getItems()) { // for each commit in the detected changes
+            def commitMessage = entry.getMsg();
+            changedFiles.add(commitMessage)
             for (file in entry.getAffectedFiles()) {
                 changedFiles.add(file.getPath()) // add changed file to list
             }
